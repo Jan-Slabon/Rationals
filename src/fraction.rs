@@ -1,6 +1,6 @@
 use crate::euclid;
 
-#[derive(Debug)]
+#[derive(Debug,Copy,Clone)]
 pub struct Fraction{
     pub nominator : i32,
     pub denominator : i32
