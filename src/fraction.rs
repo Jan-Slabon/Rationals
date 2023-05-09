@@ -1,6 +1,6 @@
 use crate::euclid;
-
-#[derive(Debug,Copy,Clone)]
+use serde::{Deserialize, Serialize};
+#[derive(Debug,Copy,Clone,Deserialize,Serialize)]
 pub struct Fraction{
     pub nominator : i32,
     pub denominator : i32

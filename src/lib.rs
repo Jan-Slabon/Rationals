@@ -2,10 +2,23 @@ use std::ops;
 mod euclid;
 mod fraction;
 use fraction::Fraction;
-#[derive(Debug,Copy,Clone)]
-enum Number{
+use serde::{Deserialize, Serialize};
+mod implScalar;
+#[derive(Debug,Copy,Clone,Deserialize,Serialize)]
+pub enum Number{
     Fractional(Fraction),
     Decimal(f32)
+}
+impl Number{
+    pub fn create_number(x:i32, y:i32) -> Number{
+        Number::Fractional(Fraction { nominator: x, denominator: y })
+    }
+    pub fn to_decimal(&self) ->f32{
+        match self {
+            Number::Fractional(frac) => frac.nominator as f32 /frac.denominator as f32,
+            Number::Decimal(dec) => *dec,
+        }
+    }
 }
 impl PartialEq for Number{
     fn eq(&self, other: &Self) -> bool {
